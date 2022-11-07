@@ -1,4 +1,19 @@
+body {
+    background-color: #f1f1f1;
+}
 
+.container {
+    background-color: #f1f1f1;
+}
+
+.text-bg-purple {
+    background-color: #770437;
+}
+
+.text-purple {
+    color: #78003f;
+    font-weight: bold;
+}
 
 .display-4 {
     font-size: 2.5rem;
