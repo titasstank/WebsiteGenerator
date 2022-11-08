@@ -45,13 +45,13 @@ $ npm ci
 ### Serving the app
 
 ```sh
-$ npm dev
+$ npm run dev
 ```
 
 ### Building a distribution version
 
 ```sh
-$ npm dev build
+$ npm run dev build
 ```
 
 This task will create a distribution version of the project
