@@ -45,14 +45,26 @@ $ npm ci
 ### Serving the app
 
 ```sh
-$ npm dev
+$ npm run dev
 ```
 
 ### Building a distribution version
 
 ```sh
-$ npm dev build
+$ npm run build
 ```
 
 This task will create a distribution version of the project
 inside your local `dist/` folder
+
+### Clean up packages
+
+```sh
+$ npm run clean
+```
+
+### Upload to GitHub pages
+
+```sh
+$ npm run deploy
+```

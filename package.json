@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "bootstrap": "^5.2.2"
+    "bootstrap": "^5.2.2",
+    "gh-pages": "^4.0.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.7.0",
@@ -8,14 +9,17 @@
   },
   "name": "websitegenerator",
   "version": "1.0.0",
-  "description": "WebsiteGenerator in C",
-  "source": "index.html",
+  "description": "",
+  "source": "src/pages/index.html",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "dev": "parcel",
-    "build": "parcel build"
+    "dev": "parcel ./src/pages/index.html",
+    "build": "parcel build ./src/pages/index.html --no-source-maps --public-url ./",
+    "clean": "rm -rf node_modules/ .parcel-cache/ dist/",
+    "//deploy_comment": "Probably not safe to keep this for public release",
+    "deploy": "rm -rf dist/ && npm run build && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -27,5 +31,5 @@
   "bugs": {
     "url": "https://github.com/imbieras/WebsiteGenerator/issues"
   },
-  "homepage": "https://github.com/imbieras/WebsiteGenerator#readme"
+  "homepage": "https://imbieras.github.io/WebsiteGenerator"
 }
