@@ -2,17 +2,13 @@ body {
     background-color: #f1f1f1;
 }
 
+:root {
+    --bs-primary: #78003f;
+    --bs-primary-rgb: 123,0,63;
+}
+
 .container {
-    background-color: #f1f1f1;
-}
-
-.text-bg-purple {
-    background-color: #770437;
-}
-
-.text-purple {
-    color: #78003f;
-    font-weight: bold;
+    background-color: #ffffff;
 }
 
 .display-4 {
@@ -37,6 +33,7 @@ body {
 
 .blog-post-title {
     font-size: 2.5rem;
+    color: var(--bs-primary);
 }
 
 .blog-post-meta {

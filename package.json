@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.2.2"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.7.0",
+    "parcel": "^2.7.0"
+  },
+  "name": "websitegenerator",
+  "version": "1.0.0",
+  "description": "WebsiteGenerator in C",
+  "source": "index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "parcel",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imbieras/WebsiteGenerator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imbieras/WebsiteGenerator/issues"
+  },
+  "homepage": "https://github.com/imbieras/WebsiteGenerator#readme"
+}
