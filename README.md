@@ -51,7 +51,7 @@ $ npm run dev
 ### Building a distribution version
 
 ```sh
-$ npm run build
+$ npm run dev build
 ```
 
 This task will create a distribution version of the project
