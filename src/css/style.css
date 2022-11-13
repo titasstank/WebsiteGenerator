@@ -1,14 +1,5 @@
-body {
-    background-color: #f1f1f1;
-}
-
-:root {
-    --bs-primary: #78003f;
-    --bs-primary-rgb: 123,0,63;
-}
-
-.container {
-    background-color: #ffffff;
+.active {
+    border-bottom: 3px solid var(--bs-secondary);
 }
 
 .display-4 {
