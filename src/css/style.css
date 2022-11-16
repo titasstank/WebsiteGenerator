@@ -1,4 +1,4 @@
-.active {
+.nav-link[aria-current="page"] {
     border-bottom: 3px solid var(--bs-secondary);
 }
 
@@ -29,5 +29,5 @@
 
 .blog-post-meta {
     margin-bottom: 1.25rem;
-    color: #727272;
+    color: var(--b-gray-600);
 }
