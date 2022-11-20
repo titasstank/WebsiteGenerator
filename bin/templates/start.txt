@@ -6,6 +6,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--Title bar logo-->
+    <link rel="icon" href="https://www.vu.lt/favicon.ico" type="image/x-icon">
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="../assets/scss/main.scss">
     <!-- Custom css -->
@@ -13,15 +15,18 @@
 </head>
 
 <body class="bg-light">
-    <div class="container-fluid bg-primary">
-        <header id="navbar" class="d-flex flex-wrap align-items-center justify-content-center py-3 mb-4">
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="./" class="nav-link px-2 text-white">Home</a></li>
-                <li><a href="./freshmore.html" class="nav-link px-2 text-white">Freshmore</a></li>
-                <li><a href="./sophomore.html" class="nav-link px-2 text-white">Sophomore</a></li>
-                <li><a href="./junior.html" class="nav-link px-2 text-white">Junior</a></li>
-                <li><a href="./senior.html" class="nav-link px-2 text-white">Senior</a></li>
-            </ul>
+    <div class="bg-primary container-fluid">
+        <header id="navbar" class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+           <a class="navbar-brand" href="./index.html">
+           <img src="https://www.vu.lt/site_files/logo_vu_baltas.svg" alt="..." height="70">
+           </a>
+           <ul class="d-flex align-items-center col-12 col-md-auto justify-content-center mb-2 mb-md-0 nav">
+              <li><a href="./" class="nav-link px-2 text-white" aria-current="page">Home</a></li>
+              <li><a href="freshmore.html" class="nav-link px-2 text-white">Freshmore</a></li>
+              <li><a href="sophomore.html" class="nav-link px-2 text-white">Sophomore</a></li>
+              <li><a href="junior.html" class="nav-link px-2 text-white">Junior</a></li>
+              <li><a href="senior.html" class="nav-link px-2 text-white">Senior</a></li>
+           </ul>
         </header>
     </div>
     <main class="container bg-white">
