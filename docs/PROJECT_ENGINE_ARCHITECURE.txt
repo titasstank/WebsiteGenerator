@@ -1,0 +1,33 @@
+//suggestion replace "categories" with "pages"
+//after every change page has to be rebuilt from blocks
+
+logPages.txt
+			<number of pages>
+			<page_name_01>
+			<page_name_02>
+			...
+			
+			|||
+			|||
+		   \   /
+			\ /
+			 '
+			 
+page_name_01.txt									page_name_02.txt											...
+			<number of messages>									<number of messages>			...
+			<message_name_01>										<message_name_01>
+			<message_name_02>										<message_name_02>
+			...														...
+			
+			||| 													|||
+			||| 													|||
+		   \   /   									   			   \   /
+			\ /														\ /
+			 '		 									 			 '
+page_name_01_message_name_01.txt 								page_name_02_message_name_01.txt
+			<formated .html code block								<formated .html code block
+			with message text>      								with message text>
+
+page_name_01_message_name_02.txt								page_name_02_message_name_02.txt
+			<formated .html code block 							<formated .html code block 		
+			with message text>									with message text>

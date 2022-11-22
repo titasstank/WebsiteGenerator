@@ -1,0 +1,37 @@
+//after last possible action program should go back to MAIN MENU
+
+WEBSITE GENERATOR BY RADAD
+--------------------------
+MAIN MENU
+1. MANAGE PAGES
+				1. CREATE MESSAGE
+									<select pages from list> //message could be uploaded to more than one page
+				2. DELETE MESSAGE
+									<select page from list>
+															<select message from list>
+																						Confirm the action (y/n)
+																												
+				3. CREATE PAGE
+									page name: (write name>
+															Confirm the action (y/n)
+				4. DELETE PAGE
+									<select page from list>
+															Confirm the action (y/n)
+
+2. CUSTOMIZE WEBSITE
+				1. NAV-BAR LOGO
+									...
+				2. TAB LOGO
+									...
+				3. SOCIAL LINKS
+									1. FACEBOOK
+															...
+									2. LINKEDIN
+															...
+									...
+
+99. SETTINGS
+				1. SETUP WEBSITE (resets everything prior)
+									Confirm the action (y/n)
+									
+																					
