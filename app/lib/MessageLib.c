@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "DefinitionLib.h"
+#include "CategoryLib.h"
+#include "TemplateLib.h"
+
+void fetchMessages(Categories *DATA, unsigned int numCat) {
+    FILE *messageLog;
+    char logFileName[MAX_FOLDER_LENGTH];
+    sprintf(logFileName, "%s%s%s", LOG_FOLDER, DATA->name[numCat], LOG_FILE_EXTENSION);
+    if ((messageLog = fopen(logFileName, "r")) == NULL) {
+        printf("Could not open message logs!\n");
+        return;
+    }
+    fscanf(messageLog, "%d", &(DATA->CatMessages[numCat].numMessages));
+    fgetc(messageLog);
+    for (int i = 0; i < DATA->CatMessages[numCat].numMessages; ++i) {
+        fgets(DATA->CatMessages[numCat].Messages[i], MAX_MESSAGE_TITLE + 1, messageLog);
+        REMOVENEWL(DATA->CatMessages[numCat].Messages[i]);
+    }
+    fclose(messageLog);
+}
+
+void fillMessageLog(Categories *DATA, unsigned int numCat, char *messageTitle) {
+    strcpy(DATA->CatMessages[numCat].Messages[DATA->CatMessages[numCat].numMessages++], messageTitle);
+    char logFileName[MAX_FOLDER_LENGTH];
+    sprintf(logFileName, "%s%s%s", LOG_FOLDER, DATA->name[numCat], LOG_FILE_EXTENSION);
+    FILE *messageLog = fopen(logFileName, "w");
+    fprintf(messageLog, "%d\n", DATA->CatMessages[numCat].numMessages);
+    for (int i = 0; i < DATA->CatMessages[numCat].numMessages; ++i) {
+        fprintf(messageLog, "%s\n", DATA->CatMessages[numCat].Messages[i]);
+    }
+    fclose(messageLog);
+    fetchMessages(DATA, numCat);
+}
+
+void printMesList(Categories *DATA, unsigned int numCat) {
+    SEPARATOR;
+    if (DATA->CatMessages[numCat].numMessages == 0) {
+        printf("This category has no messages.\n");
+    } else {
+        for (int i = 0; i < DATA->CatMessages[numCat].numMessages; ++i) {
+            printf("%d. %s\n", i + 1, DATA->CatMessages[numCat].Messages[i]);
+        }
+    }
+    SEPARATORIND;
+}
+
+
+void askForTextInput(char *instruction, char **unallocatedStr, size_t maxLength) {
+    SEPARATOR;
+    printf("%s: ", instruction);
+    if ((*unallocatedStr = (char *) malloc(maxLength * sizeof(char))) == NULL) {
+        printf("Could not allocate memory!\n");
+        return;
+    }
+    fgets(*unallocatedStr, maxLength + 1, stdin);
+}
+
+void createMessage(Categories *DATA, unsigned int numCat) {
+    CLEAR;
+    char *messageTitle;
+    askForTextInput("Enter the title of your message", &messageTitle, MAX_MESSAGE_TITLE);
+    REMOVENEWL(messageTitle);
+    char *message;
+    askForTextInput("Enter the message", &message, MAX_MESSAGE_LENGTH);
+    REMOVENEWL(message);
+
+    formatBasicMessage(DATA->name[numCat], messageTitle, message);
+    fillMessageLog(DATA, numCat, messageTitle);
+
+    free(messageTitle);
+    free(message);
+    CLEAR;
+}

@@ -1,0 +1,82 @@
+name: Compile app/lib
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  # This job will compile the app for Windows
+  windows:
+    runs-on: windows-latest
+    steps:
+      # Check out the code from the repository
+      - uses: actions/checkout@v3
+      # Install the gcc compiler
+      - name: Install gcc
+        run: |
+          choco install mingw
+      # Compile the app using CMake
+      - name: Compile App
+        run: |
+          cmake -S app -B build -G "MinGW Makefiles"
+          cmake --build build   
+       # Create a release with the compiled files as assets
+      - name: Create Release
+        uses: softprops/action-gh-release@v0.1.15
+        with:
+          body: This release contains the compiled files for the project.
+          tag_name: v0.5
+          files: |
+            build/webgen*
+
+  # This job will compile the app for Linux
+  linux:
+      runs-on: ubuntu-latest
+      steps:
+        # Check out the code from the repository
+        - uses: actions/checkout@v3
+        # Install the gcc compiler
+        - name: Install gcc
+          run: sudo apt-get install gcc
+        # Compile the app using CMake
+        - name: Compile App
+          run: |
+            cmake -S app -B build
+            cmake --build build
+        # Create a release with the compiled files as assets
+        - name: Create Release
+          uses: softprops/action-gh-release@v0.1.15
+          with:
+            body: This release contains the compiled files for the project.
+            tag_name: v0.5
+            files: |
+              build/webgen*
+
+  # This job will compile the app for macOS
+  macos:
+    runs-on: macOS-latest
+    steps:
+      # Check out the code from the repository
+      - uses: actions/checkout@v3
+      # Install the gcc compiler
+      - name: Install gcc
+        run: |
+          brew install gcc
+      # Compile the app using CMake
+      - name: Compile App
+        run: |
+          cmake -S app -B build
+          cmake --build build  
+      # Create a release with the compiled files as assets
+      - name: Create Release
+        uses: softprops/action-gh-release@v0.1.15
+        with:
+          body: This release contains the compiled files for the project.
+          tag_name: v0.5
+          files: |
+            build/webgen*

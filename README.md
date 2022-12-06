@@ -23,6 +23,17 @@ $ npm -v && node -v
 v18.12.1
 ```
 
+***If you want to compile the generator app yourself you need to have cmake, make and any c compiler(preferably gcc) installed on your machine.***
+
+```sh
+$ cmake --version
+cmake version 3.16.3
+$ make --version
+GNU Make 4.2.1
+$ gcc --version
+gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0
+```
+
 ## Installation
 
 **BEFORE YOU INSTALL:** please read the [prerequisites](#prerequisites)
@@ -41,6 +52,15 @@ $ npm ci
 ```
 
 ## Usage
+
+### Generating the website
+
+```sh
+$ cd app
+$ cmake -S . -B build  # alternatively use cmake -S . -B build -G "MinGW Makefiles"
+$ cd build
+$ make
+```
 
 ### Serving the app
 
