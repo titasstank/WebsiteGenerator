@@ -26,7 +26,7 @@
   * Added a define to remove the ending `\n` symbol
   * Added the creation of log files for each category
   * And a whole lot more...
-* **Version 0.3 22-12-17**
+* **Version 0.3 22-12-02**
 
   * Added message creation and storing in files in their html formated form
   * Added category description which is created at the time of creating the category itself
@@ -34,3 +34,14 @@
   * **v0.1** of building page file
     * Loads all of standart templates and category information into one html file sucessfully
   * Many other additions and improvements overall...
+* **Version 0.5 Some Date**
+
+  * So much that we forgot to list and forgot what we did, basically made it compile itself and other
+* **Version 0.6 22-12-08**
+
+  * Added the option to delete categories and messages
+  * Also deletes all log files and page 60% of the time
+* **Version 0.7 22-12-11 (a.k.a. first version which can be used properly)**
+
+  * Nav bar gets updated with newer categories
+  * Minor changes and bugfixes to smoothen the process a little

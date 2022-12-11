@@ -1,0 +1,7 @@
+<article class="blog-post">
+<h2 class="blog-post-title mb-1">Reminder</h2>
+<p class="blog-post-meta">December 10, 2022</p>
+<p>
+Homework is due today at 23:59, do not be late! 
+</p>
+</article>

@@ -20,11 +20,11 @@ void fetchCategories(FILE *logCategories, Categories *DATA);
 
 void printCatList(Categories *DATA);
 
+void fillCatLog(FILE *logCategories, Categories *DATA);
+
 void addCategory(Categories *DATA);
 
 void deleteCategory(Categories *DATA, int choice);
-
-void fillCatLog(FILE *logCategories, Categories *DATA);
 
 void formLogFile(char *filename);
 

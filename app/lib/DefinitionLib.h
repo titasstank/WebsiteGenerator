@@ -3,7 +3,7 @@
 
 /* Size definitions */
 
-#define VERSION "0.5"
+#define VERSION "0.7"
 #define COPY_BUFFER_SIZE 255
 #define MAX_MESSAGE_LENGTH 5000
 #define MAX_MESSAGE_TITLE 100
@@ -22,41 +22,39 @@
 #define CATEGORY_LOG "logCategories"
 #define PAGE_FILE_EXTENSION ".html"
 #define DESCRIPTION_TAG "_description"
+#define CREDITS_PATH "../templates/credits.txt"
 
 /* HTML Definitions */
 
-#define PAGE_START_TEMPLATE_NAME "start.txt"
-#define PAGE_END_TEMPLATE_NAME "finish.txt"
+#define HOME_PAGE       "index"
+#define PAGE_START      "start"
+#define PAGE_END        "finish"
+#define NAV_START       "nav_start"
+#define NAV_END         "nav_end"
+
 
 // NAVBAR tags
-#define NAVBAR_PAGE_FILE    "<li><a href=\"freshmore.html\" "
-#define NAVBAR_PAGE_TITLE   "class=\"nav-link px-2 text-white\">"
-#define NAVBAR_END          "</a></li>"
+#define NAVBAR_LINE             "<li><a href=\"%s.html\" class=\"nav-link px-2 text-white\">%s</a></li>\n"
 
 // Category description tags
-
-#define CATEGORY_DESCRIPTION        "<h3 class=\"pb-4 mb-4 text-primary border-bottom\">"
-#define H3                          "</h3>"
+#define CATEGORY_DESCRIPTION    "<h3 class=\"pb-4 mb-4 text-primary border-bottom\">\n%s\n</h3>\n"
 
 // Message tags
-#define ARTICLE_BEGINNING "<article class=\"blog-post\">"
-#define BLOG_TITLE       "<h2 class=\"blog-post-title mb-1\">"
-#define H2              "</h2>"
-
-#define BLOG_DATE        "<p class=\"blog-post-meta\">"
-#define P_CLOSE          "</p>"
-
-#define BLOG_MESSAGE     "<p>"
-#define ARTICLE_ENDING   "</article>"
+#define BASIC_MESSAGE           "<article class=\"blog-post\">\n"\
+                                "<h2 class=\"blog-post-title mb-1\">%s</h2>\n"\
+                                "<p class=\"blog-post-meta\">%s %d, %d</p>\n"\
+                                "<p>%s</p>\n"\
+                                "</article>\n"
 
 /* Utility Definitions */
 
-#define CLEAR        printf("\033[2J")
-#define REMOVENEWL(str)   str[strcspn(str, "\n")] = 0;
-#define SEPARATOR    printf("%s","=====================================================\n");
-#define SEPARATORIND printf("%s","\n=====================================================\n\n");
+#define CLEAR                   printf("\e[1;1H\e[2J");
+#define PAUSE                   system("pause");
+#define REMOVENEWL(str)         str[strcspn(str, "\n")] = 0;
+#define DELETE_FILE(fileName)   remove(fileName);
+#define SEPARATOR               printf("%s","=====================================================\n");
 
-#define LIST_CATEGORY_OPTIONS printf("1. Create a category\n2. Delete a category\n3. Print list of categories\n4. Select working category\n5. Exit\n");
-#define LIST_MESSAGE_OPTIONS  printf("1. Create a message\n2. Delete a message\n3. Print a list of messages\n4. Build page and go back\n");
+#define LIST_CATEGORY_OPTIONS SEPARATOR; printf("What would you like to do?\n\n1. Create a category\n2. Delete a category\n3. Print list of categories\n4. Select working category\n5. Exit\n\n6. Credits\n7. Debug\n"); SEPARATOR;
+#define LIST_MESSAGE_OPTIONS  SEPARATOR; printf("What would you like to do?\n\n1. Create a message\n2. Delete a message\n3. Print a list of messages\n4. Build page and go back\n"); SEPARATOR;
 
 #endif // DefinitionLib

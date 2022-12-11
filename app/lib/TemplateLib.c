@@ -13,15 +13,10 @@ void formatBasicMessage(char *categoryName, char *messageTitle, char *message) {
     sprintf(messageFile, "%s%s_%s%s", LOG_FOLDER, categoryName, messageTitle, LOG_FILE_EXTENSION);
     FILE *file = fopen(messageFile, "w");
 
-
-    fprintf(file, "%s\n", ARTICLE_BEGINNING);
-    fprintf(file, "%s%s%s\n", BLOG_TITLE, messageTitle, H2);
     // Get current date
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
-    fprintf(file, "%s%s %d, %d%s\n", BLOG_DATE, months[tm.tm_mon], tm.tm_mday, tm.tm_year + 1900, P_CLOSE);
-    fprintf(file, "%s\n%s\n%s\n", BLOG_MESSAGE, message, P_CLOSE);
-    fprintf(file, "%s\n", ARTICLE_ENDING);
+    fprintf(file, BASIC_MESSAGE, messageTitle, months[tm.tm_mon], tm.tm_mday, tm.tm_year + 1900, message);
 
     fclose(file);
 }

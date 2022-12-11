@@ -22,21 +22,3 @@
            </a>
            <ul class="d-flex align-items-center col-12 col-md-auto justify-content-center mb-2 mb-md-0 nav">
               <li><a href="./" class="nav-link px-2 text-white">Home</a></li>
-<li><a href="Freshmore.html" class="nav-link px-2 text-white">Freshmore</a></li>
-<li><a href="Sophomore.html" class="nav-link px-2 text-white">Sophomore</a></li>
-<li><a href="Junior.html" class="nav-link px-2 text-white">Junior</a></li>
-<li><a href="Senior.html" class="nav-link px-2 text-white">Senior</a></li>
-           </ul>
-        </header>
-    </div>
-    <main class="container bg-white">
-        <div class="py-4">
-            <div class="p-4 p-md-5 mb-4 rounded bg-primary">
-                <div class="col-md-6 px-0">
-                    <h1 class="display-4 fw-bold text-white">Welcome to the page!</h1>
-                    <p class="lead my-3 text-white">Enjoy your stay.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center align-items-center">
-            <div class="col-md-10">

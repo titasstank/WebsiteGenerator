@@ -22,8 +22,7 @@ void fetchMessages(Categories *DATA, unsigned int numCat) {
     fclose(messageLog);
 }
 
-void fillMessageLog(Categories *DATA, unsigned int numCat, char *messageTitle) {
-    strcpy(DATA->CatMessages[numCat].Messages[DATA->CatMessages[numCat].numMessages++], messageTitle);
+void fillMessageLog(Categories *DATA, unsigned numCat) {
     char logFileName[MAX_FOLDER_LENGTH];
     sprintf(logFileName, "%s%s%s", LOG_FOLDER, DATA->name[numCat], LOG_FILE_EXTENSION);
     FILE *messageLog = fopen(logFileName, "w");
@@ -40,37 +39,60 @@ void printMesList(Categories *DATA, unsigned int numCat) {
     if (DATA->CatMessages[numCat].numMessages == 0) {
         printf("This category has no messages.\n");
     } else {
+        printf("Messages:\n\n");
         for (int i = 0; i < DATA->CatMessages[numCat].numMessages; ++i) {
             printf("%d. %s\n", i + 1, DATA->CatMessages[numCat].Messages[i]);
         }
     }
-    SEPARATORIND;
 }
 
 
 void askForTextInput(char *instruction, char **unallocatedStr, size_t maxLength) {
     SEPARATOR;
-    printf("%s: ", instruction);
+    printf("%s", instruction);
+    SEPARATOR;
     if ((*unallocatedStr = (char *) malloc(maxLength * sizeof(char))) == NULL) {
+        CLEAR;
+        SEPARATOR;
         printf("Could not allocate memory!\n");
+        SEPARATOR;
         return;
     }
     fgets(*unallocatedStr, maxLength + 1, stdin);
 }
 
 void createMessage(Categories *DATA, unsigned int numCat) {
-    CLEAR;
     char *messageTitle;
-    askForTextInput("Enter the title of your message", &messageTitle, MAX_MESSAGE_TITLE);
-    REMOVENEWL(messageTitle);
     char *message;
-    askForTextInput("Enter the message", &message, MAX_MESSAGE_LENGTH);
+
+    CLEAR;
+    askForTextInput("Enter the title of your message\n", &messageTitle, MAX_MESSAGE_TITLE);
+    REMOVENEWL(messageTitle);
+
+    CLEAR;
+    askForTextInput("Enter the message\n", &message, MAX_MESSAGE_LENGTH);
     REMOVENEWL(message);
 
     formatBasicMessage(DATA->name[numCat], messageTitle, message);
-    fillMessageLog(DATA, numCat, messageTitle);
+    strcpy(DATA->CatMessages[numCat].Messages[DATA->CatMessages[numCat].numMessages++], messageTitle);
+    fillMessageLog(DATA, numCat);
 
     free(messageTitle);
     free(message);
     CLEAR;
+}
+
+void deleteMessage(Categories *DATA, unsigned numCat, unsigned messageToDeleteNumber){
+    // Deleting the log file
+    char messageLogFileName[MAX_FOLDER_LENGTH];
+    sprintf(messageLogFileName, "%s%s_%s%s", LOG_FOLDER, DATA->name[numCat], DATA->CatMessages[numCat].Messages[messageToDeleteNumber], LOG_FILE_EXTENSION);
+    DELETE_FILE(messageLogFileName);
+
+    // Overriding it in structure
+    for(int i = messageToDeleteNumber; i < DATA->CatMessages[numCat].numMessages; ++i){
+        strcpy(DATA->CatMessages[numCat].Messages[i], DATA->CatMessages[numCat].Messages[i + 1]);
+    }
+    --(DATA->CatMessages[numCat].numMessages);
+    fillMessageLog(DATA, numCat);
+    printf("Message deleted successfully.\n");
 }
