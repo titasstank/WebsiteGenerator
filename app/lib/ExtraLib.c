@@ -4,6 +4,8 @@
 #include "DefinitionLib.h"
 #include "CategoryLib.h"
 
+extern Categories *DATA;
+
 void printCredits() {
     FILE *cr;
     char buffer[COPY_BUFFER_SIZE];
@@ -24,9 +26,9 @@ void printCredits() {
     fclose(cr);
 };
 
-void printDebug(Categories *DATA) {
+void printDebug() { // ?? What is this sh!t
     SEPARATOR;
     printf("Global variables:\n\n");
     printf("Number of categories: %d\n", DATA->numCategories);
-    printCatList(DATA);
+    printCatList();
 }

@@ -1,16 +1,16 @@
 #ifndef MessageLib
 #define MessageLib
 
-void fetchMessages(Categories *DATA, unsigned int numCat);
+void fetchMessages(unsigned int numCat);
 
-void fillMessageLog(Categories *DATA, unsigned int numCat);
+void fillMessageLog(unsigned int numCat);
 
-void printMesList(Categories *DATA, unsigned int numCat);
+void printMesList(unsigned int numCat);
 
 void askForTextInput(char *instruction, char **unallocatedStr, size_t maxLength);
 
-void createMessage(Categories *DATA, unsigned int numCat);
+void createMessage(unsigned int numCat);
 
-void deleteMessage(Categories *DATA, unsigned numCat, unsigned messageToDeleteNumber);
+void deleteMessage(unsigned numCat, unsigned messageToDeleteNumber);
 
 #endif // MessageLib

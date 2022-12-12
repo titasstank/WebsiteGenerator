@@ -3,7 +3,7 @@
 
 void copyFromFileToFile(FILE *destinationFile, char *sourceFileName);
 
-int buildPage(Categories *DATA, unsigned int workingCategory);
+int buildPage(unsigned int workingCategory);
 
 void buildNavBar(Categories *DATA);
 

@@ -16,15 +16,15 @@ typedef struct Categories {
 
 /* Function Definitions */
 
-void fetchCategories(FILE *logCategories, Categories *DATA);
+void fetchCategories(FILE *logCategories);
 
-void printCatList(Categories *DATA);
+void printCatList();
 
-void fillCatLog(FILE *logCategories, Categories *DATA);
+void fillCatLog(FILE *logCategories);
 
-void addCategory(Categories *DATA);
+void addCategory();
 
-void deleteCategory(Categories *DATA, int choice);
+void deleteCategory(int choice);
 
 void formLogFile(char *filename);
 

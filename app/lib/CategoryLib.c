@@ -6,10 +6,12 @@
 #include "MessageLib.h"
 #include "PageLib.h"
 
+Categories *DATA;
+
 /* fetchCategories */
 /* Copies the number of categories and the categories to the structure from the specified file */
 
-void fetchCategories(FILE *logCategories, Categories *DATA) {
+void fetchCategories(FILE *logCategories) {
     char category[MAX_CATEGORY_NAME];
 
     fscanf(logCategories, "%d", &(DATA->numCategories));
@@ -25,7 +27,7 @@ void fetchCategories(FILE *logCategories, Categories *DATA) {
 /* printCatList */
 /* Prints the list of the categories from the structure */
 
-void printCatList(Categories *DATA) {
+void printCatList() {
     SEPARATOR;
     if (DATA->numCategories != 0) {
         printf("Categories:\n\n");
@@ -40,7 +42,7 @@ void printCatList(Categories *DATA) {
 /* fillCatLog */
 /* Puts the number of categories and categories form the structure to the specified file */
 
-void fillCatLog(FILE *logCategories, Categories *DATA) {
+void fillCatLog(FILE *logCategories) {
     fprintf(logCategories, "%d\n", DATA->numCategories);
     for (int i = 0; i < DATA->numCategories; ++i) {
         fprintf(logCategories, "%s\n", DATA->name[i]);
@@ -50,7 +52,7 @@ void fillCatLog(FILE *logCategories, Categories *DATA) {
 /* addCategory */
 /* Adds a category to the structure */
 
-void addCategory(Categories *DATA) {
+void addCategory() {
     char category[MAX_CATEGORY_NAME];
 
     SEPARATOR;
@@ -74,8 +76,8 @@ void addCategory(Categories *DATA) {
 /* deleteCategory */
 /* Deletes a category from the structure */
 
-void deleteCategory(Categories *DATA, int choice) {
-    fetchMessages(DATA, choice);
+void deleteCategory(int choice) {
+    fetchMessages(choice);
     // Delete all the files
     for(int i = 0; i < DATA->CatMessages[choice].numMessages; ++i){
         char messageLogFileName[MAX_FOLDER_LENGTH];
@@ -99,7 +101,7 @@ void deleteCategory(Categories *DATA, int choice) {
     char logCategoriesFileName[MAX_FOLDER_LENGTH];
     sprintf(logCategoriesFileName, "%s%s%s", LOG_FOLDER, CATEGORY_LOG, LOG_FILE_EXTENSION);
     FILE *logCategories = fopen(logCategoriesFileName, "w");
-    fillCatLog(logCategories, DATA);
+    fillCatLog(logCategories);
     fclose(logCategories);
     
     SEPARATOR;

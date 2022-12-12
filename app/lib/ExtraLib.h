@@ -2,6 +2,6 @@
 #define ExtraLib
 
 void printCredits();
-void printDebug(Categories *DATA);
+void printDebug();
 
 #endif

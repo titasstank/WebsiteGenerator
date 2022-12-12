@@ -4,6 +4,8 @@
 #include "CategoryLib.h"
 #include "MessageLib.h"
 
+extern Categories *DATA;
+
 int failedToCopy = 0;
 void copyFromFileToFile(FILE *destinationFile, char *sourceFileName) {
     FILE *sourceFile;
@@ -20,7 +22,7 @@ void copyFromFileToFile(FILE *destinationFile, char *sourceFileName) {
     }
 }
 
-int buildPage(Categories *DATA, unsigned int workingCategory) {
+int buildPage(unsigned int workingCategory) {
     char pageFileName[MAX_FOLDER_LENGTH];
     sprintf(pageFileName, "%s%s%s", PAGE_FOLDER, DATA->name[workingCategory], PAGE_FILE_EXTENSION);
     FILE *pageFile = fopen(pageFileName, "w");
@@ -49,7 +51,7 @@ int buildPage(Categories *DATA, unsigned int workingCategory) {
     return fail;
 }
 
-void buildNavBar(Categories *DATA) { //TODO: edit nav bar
+void buildNavBar() {
     // Preparing start template file
     char destinationFileName[MAX_FOLDER_LENGTH];
     sprintf(destinationFileName, "%s%s%s", TEMPLATE_FOLDER, PAGE_START, LOG_FILE_EXTENSION);
@@ -75,7 +77,7 @@ void buildNavBar(Categories *DATA) { //TODO: edit nav bar
 
     // Rebuild all pages so they have updated nav bars
     for(int i = 0; i < DATA->numCategories; ++i){
-        fetchMessages(DATA, i);
-        buildPage(DATA, i);
+        fetchMessages(i);
+        buildPage(i);
     }
 }

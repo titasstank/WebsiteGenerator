@@ -7,7 +7,10 @@
 #include "./lib/PageLib.h"
 #include "./lib/ExtraLib.h"
 
+extern Categories *DATA;
+
 int main() {
+    DATA = malloc(sizeof(Categories));
     /* Work with files */
 
     FILE *logCategories;
@@ -23,8 +26,6 @@ int main() {
     /* Work with categories */
 
     int menuCat = 0, workCat = 0, menuMes = 0, choice;
-    Categories *DATA;
-    DATA = malloc(sizeof(Categories));
 
     CLEAR;
     SEPARATOR;
@@ -32,7 +33,7 @@ int main() {
     printf("The half assed/more than half way update\n");
 
     logCategories = fopen(logCategoriesFileName, "r");
-    fetchCategories(logCategories, DATA);
+    fetchCategories(logCategories);
     fclose(logCategories);
 
     /* Create an Index page if there isn't one already */
@@ -47,7 +48,7 @@ int main() {
         char indexLogFileName[MAX_FOLDER_LENGTH] = HOME_PAGE;
         formLogFile(indexLogFileName);
         createCategoryDescription(HOME_PAGE);
-        buildPage(DATA, DATA->numCategories++);
+        buildPage(DATA->numCategories++);
     }
 
 
@@ -68,14 +69,14 @@ int main() {
         switch (menuCat) {
             case 1:
                 CLEAR;
-                addCategory(DATA);
+                addCategory();
                 break;
             case 2:
                 if (DATA->numCategories != 0) {
                     CLEAR;
                     SEPARATOR;
                     printf("Which category would you like to delete? (0 to go back)\n");
-                    printCatList(DATA);
+                    printCatList();
                     while (1){
                         if (scanf("%u", &choice) == 1 && getchar() == '\n'){
                             if (choice <= DATA->numCategories){
@@ -87,21 +88,21 @@ int main() {
                                     printf("Cannot delete home page!\n");
                                 }
                                 else{
-                                    deleteCategory(DATA, --choice);
+                                    deleteCategory(--choice);
                                     break;
                                 }
                             } else {
                                 CLEAR;
                                 SEPARATOR;
                                 printf("There is no such category! Please select a valid option...\n");
-                                printCatList(DATA);
+                                printCatList();
                             }
                         } else {
                             CLEAR;
                             while (getchar() != '\n');
                             SEPARATOR;
                             printf("Invalid option! Please select a valid option...\n");
-                            printCatList(DATA);
+                            printCatList();
                         }
                     }
                 } else {
@@ -111,18 +112,18 @@ int main() {
                 break;
             case 3:
                 CLEAR;
-                printCatList(DATA);
+                printCatList();
                 break;
             case 4:
                 CLEAR;
-                printCatList(DATA);
+                printCatList();
                 if(DATA->numCategories == 0){
                     break;
                 }
                 printf("Which is your working category?");
                 scanf("%d", &workCat);
                 getchar();
-                fetchMessages(DATA, --workCat);
+                fetchMessages(--workCat);
                 CLEAR;
 
                 while (menuMes != 4) {
@@ -132,11 +133,11 @@ int main() {
                     CLEAR;
                     switch (menuMes) {
                         case 1:
-                            createMessage(DATA, workCat);
+                            createMessage(workCat);
                             break;
                         case 2:
                             SEPARATOR
-                            printMesList(DATA, workCat);
+                            printMesList(workCat);
                             SEPARATOR
                             printf("Which message would you like to delete? (0 to go back)\n");
                             scanf("%u", &choice); // TODO: input validation
@@ -147,7 +148,7 @@ int main() {
                                     break;
                                 }
                                 SEPARATOR;
-                                deleteMessage(DATA, workCat, --choice);
+                                deleteMessage(workCat, --choice);
                                 SEPARATOR;
                                 break;
                             }
@@ -155,10 +156,10 @@ int main() {
                                 printf("Not a valid option!\n");
                             }
                         case 3:
-                            printMesList(DATA, workCat);
+                            printMesList(workCat);
                             break;
                         case 4:
-                            if(!(buildPage(DATA, workCat))){
+                            if(!(buildPage(workCat))){
                                 SEPARATOR;
                                 printf("Page built successfully!\n");
                             }
@@ -174,7 +175,7 @@ int main() {
                 CLEAR;
                 SEPARATOR;
                 logCategories = fopen(logCategoriesFileName, "w");
-                fillCatLog(logCategories, DATA);
+                fillCatLog(logCategories);
                 fclose(logCategories);
                 break;
             case 6:
@@ -183,7 +184,7 @@ int main() {
                 break;
             case 7:
                 CLEAR;
-                printDebug(DATA);
+                printDebug();
                 break;
             default:
                 printf("Not a valid option!\n");
