@@ -29,8 +29,8 @@ int main() {
 
     CLEAR;
     SEPARATOR;
-    printf("Running on Website-Generator version %s\n", VERSION);
-    printf("The half assed/more than half way update\n");
+    printf(SOURCE_VERSION, VERSION);
+    printf(SOURCE_VERSION_DESC);
 
     logCategories = fopen(logCategoriesFileName, "r");
     fetchCategories(logCategories);
@@ -43,7 +43,7 @@ int main() {
     sprintf(homePageFileName, "%s%s%s", PAGE_FOLDER, HOME_PAGE, PAGE_FILE_EXTENSION);
     if((homePage = fopen(homePageFileName, "r")) == NULL){
         SEPARATOR;
-        printf("Please create a home page for your Website (index).\n");
+        printf(SOURCE_CREATE_INDEX);
         strcpy(DATA->name[DATA->numCategories], HOME_PAGE);
         char indexLogFileName[MAX_FOLDER_LENGTH] = HOME_PAGE;
         formLogFile(indexLogFileName);
@@ -56,93 +56,123 @@ int main() {
     while (menuCat != 5) {
         LIST_CATEGORY_OPTIONS;
         while (1){
-            if (scanf("%u", &menuCat) == 1 && getchar() == '\n')
+            menuCat = getValidatedInt();
+            CLEAR;
+            if (menuCat != -1)
                 break;
             else {
-                CLEAR;
                 SEPARATOR;
-                printf("Invalid option! Please select a valid option...\n");
+                printf(SOURCE_INVALID_OPTION);
                 LIST_CATEGORY_OPTIONS;
-                while(getchar() != '\n');
             }
         }
+        CLEAR;
         switch (menuCat) {
             case 1:
-                CLEAR;
                 addCategory();
                 break;
             case 2:
                 if (DATA->numCategories != 0) {
-                    CLEAR;
                     SEPARATOR;
-                    printf("Which category would you like to delete? (0 to go back)\n");
+                    printf(SOURCE_DELETE_CAT);
                     printCatList();
+                    SEPARATOR;
                     while (1){
-                        if (scanf("%u", &choice) == 1 && getchar() == '\n'){
-                            if (choice <= DATA->numCategories){
-                                CLEAR; 
+                        choice = getValidatedInt();
+                        if (choice != -1 && choice <= DATA->numCategories){
+                                CLEAR;
                                 if (choice == 0){
                                     break;
                                 }
                                 else if(choice == 1){
-                                    printf("Cannot delete home page!\n");
+                                    SEPARATOR;
+                                    printf(SOURCE_CANNOTDEL_HOME);
+                                    SEPARATOR;
+                                    printf(SOURCE_DELETE_CAT);
+                                    printCatList();
+                                    SEPARATOR;
                                 }
-                                else{
+                                else {
                                     deleteCategory(--choice);
                                     break;
                                 }
-                            } else {
-                                CLEAR;
-                                SEPARATOR;
-                                printf("There is no such category! Please select a valid option...\n");
-                                printCatList();
-                            }
                         } else {
                             CLEAR;
-                            while (getchar() != '\n');
                             SEPARATOR;
-                            printf("Invalid option! Please select a valid option...\n");
+                            printf(SOURCE_INVALID_CAT);
                             printCatList();
+                            SEPARATOR;
                         }
                     }
-                } else {
-                    CLEAR;
-                    printf("Nothing to delete!\n");
-                }
+                } else
+                    printf(SOURCE_NOTHING_DEL);
                 break;
             case 3:
-                CLEAR;
                 printCatList();
                 break;
             case 4:
-                CLEAR;
                 printCatList();
                 if(DATA->numCategories == 0){
                     break;
                 }
-                printf("Which is your working category?");
-                scanf("%d", &workCat);
-                getchar();
-                fetchMessages(--workCat);
+                SEPARATOR;
+                printf(SOURCE_WHICH_CAT);
+                while(1){
+                    workCat = getValidatedInt();
+                    CLEAR;
+                    if(workCat != -1 && workCat <= DATA->numCategories){
+                        break;
+                    }
+                    else{
+                        SEPARATOR;
+                        printf(SOURCE_INVALID_OPTION);
+                        printCatList();
+                        SEPARATOR;
+                        printf(SOURCE_WHICH_CAT);
+                    }
+                }
                 CLEAR;
+                if(workCat == 0){
+                    CLEAR;
+                    break;
+                }
+                fetchMessages(--workCat);
 
                 while (menuMes != 4) {
                     LIST_MESSAGE_OPTIONS;
-                    scanf("%d", &menuMes);
-                    getchar();
+                    while(1){
+                        menuMes = getValidatedInt();
+                        CLEAR;
+                        if (menuMes != -1){
+                            break;
+                        } else {
+                            SEPARATOR;
+                            printf(SOURCE_INVALID_OPTION);
+                            LIST_MESSAGE_OPTIONS;
+                        }
+                    }
                     CLEAR;
                     switch (menuMes) {
                         case 1:
                             createMessage(workCat);
                             break;
                         case 2:
-                            SEPARATOR
                             printMesList(workCat);
                             SEPARATOR
-                            printf("Which message would you like to delete? (0 to go back)\n");
-                            scanf("%u", &choice); // TODO: input validation
-                            getchar();
-                            if(choice <= DATA->CatMessages[workCat].numMessages){
+                            printf(SOURCE_DELETE_MESS);
+                            SEPARATOR;
+                            while(1){
+                                choice = getValidatedInt();
+                                if(choice != -1 && choice <= DATA->CatMessages[workCat].numMessages)
+                                    break;
+                                else {
+                                    CLEAR;
+                                    SEPARATOR;
+                                    printf(SOURCE_INVALID_OPTION);
+                                    printMesList(workCat);
+                                    SEPARATOR;
+                                }
+                            }
                                 CLEAR;
                                 if(choice == 0){
                                     break;
@@ -151,51 +181,45 @@ int main() {
                                 deleteMessage(workCat, --choice);
                                 SEPARATOR;
                                 break;
-                            }
-                            else{
-                                printf("Not a valid option!\n");
-                            }
                         case 3:
                             printMesList(workCat);
                             break;
                         case 4:
                             if(!(buildPage(workCat))){
                                 SEPARATOR;
-                                printf("Page built successfully!\n");
+                                printf(SOURCE_BUILDP_SUC);
                             }
                             break;
                         default:
-                            printf("Not a valid option!\n");
+                            SEPARATOR;
+                            printf(SOURCE_INVALID_OPTION);
                             break;
                     }
                 }
                 menuMes = 0;
                 break;
             case 5:
-                CLEAR;
                 SEPARATOR;
                 logCategories = fopen(logCategoriesFileName, "w");
                 fillCatLog(logCategories);
                 fclose(logCategories);
                 break;
             case 6:
-                CLEAR;
                 printCredits();
                 break;
             case 7:
-                CLEAR;
                 printDebug();
                 break;
             default:
-                printf("Not a valid option!\n");
+                SEPARATOR
+                printf(SOURCE_INVALID_OPTION);
                 break;
         }
     }
 
     /* End of program */
 
-    printf("Closed program\n");
-    printf("\nThank you for using WebsiteGenerator!\n");
+    printf(SOURCE_CLOSE_MES);
     SEPARATOR;
     free(DATA);
     return 0;

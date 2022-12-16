@@ -12,7 +12,7 @@ void fetchMessages(unsigned int numCat) {
     char logFileName[MAX_FOLDER_LENGTH];
     sprintf(logFileName, "%s%s%s", LOG_FOLDER, DATA->name[numCat], LOG_FILE_EXTENSION);
     if ((messageLog = fopen(logFileName, "r")) == NULL) {
-        printf("Could not open message logs!\n");
+        printf(MESSAGE_CANNOTOPEN_LOGS);
         return;
     }
     fscanf(messageLog, "%d", &(DATA->CatMessages[numCat].numMessages));
@@ -39,9 +39,9 @@ void fillMessageLog(unsigned numCat) {
 void printMesList(unsigned int numCat) {
     SEPARATOR;
     if (DATA->CatMessages[numCat].numMessages == 0) {
-        printf("This category has no messages.\n");
+        printf(MESSAGE_CATNO_MES);
     } else {
-        printf("Messages:\n\n");
+        printf(MESSAGE_MES);
         for (int i = 0; i < DATA->CatMessages[numCat].numMessages; ++i) {
             printf("%d. %s\n", i + 1, DATA->CatMessages[numCat].Messages[i]);
         }
@@ -56,7 +56,7 @@ void askForTextInput(char *instruction, char **unallocatedStr, size_t maxLength)
     if ((*unallocatedStr = (char *) malloc(maxLength * sizeof(char))) == NULL) {
         CLEAR;
         SEPARATOR;
-        printf("Could not allocate memory!\n");
+        printf(MESSAGE_MALOC_FAIL);
         SEPARATOR;
         return;
     }
@@ -68,11 +68,11 @@ void createMessage(unsigned int numCat) {
     char *message;
 
     CLEAR;
-    askForTextInput("Enter the title of your message\n", &messageTitle, MAX_MESSAGE_TITLE);
+    askForTextInput(MESSAGE_ENTERTITLE_MES, &messageTitle, MAX_MESSAGE_TITLE);
     REMOVENEWL(messageTitle);
 
     CLEAR;
-    askForTextInput("Enter the message\n", &message, MAX_MESSAGE_LENGTH);
+    askForTextInput(MESSAGE_ENTER_MES, &message, MAX_MESSAGE_LENGTH);
     REMOVENEWL(message);
 
     formatBasicMessage(DATA->name[numCat], messageTitle, message);
@@ -96,5 +96,5 @@ void deleteMessage(unsigned numCat, unsigned messageToDeleteNumber){
     }
     --(DATA->CatMessages[numCat].numMessages);
     fillMessageLog(numCat);
-    printf("Message deleted successfully.\n");
+    printf(MESSAGE_MESDEL_SUC);
 }

@@ -11,7 +11,7 @@ void copyFromFileToFile(FILE *destinationFile, char *sourceFileName) {
     FILE *sourceFile;
     if ((sourceFile = fopen(sourceFileName, "r")) == NULL) {
         SEPARATOR;
-        printf("Could not open file to copy contents from. Page has not been built successfully!\nDon't forget to exit!\n");
+        printf(PAGE_BUILDPAGE_FAIL);
         SEPARATOR;
         failedToCopy = 1;
     }
@@ -57,14 +57,14 @@ void buildNavBar() {
     sprintf(destinationFileName, "%s%s%s", TEMPLATE_FOLDER, PAGE_START, LOG_FILE_EXTENSION);
     FILE *destinationFile;
     if((destinationFile = fopen(destinationFileName, "w")) == NULL){
-        printf("Failed to open destination file!\n");
+        printf(PAGE_DESOPEN_FAIL);
     }
 
     char sourceFileName[MAX_FOLDER_LENGTH];
     // Copy nav start
     sprintf(sourceFileName, "%s%s%s", TEMPLATE_FOLDER, NAV_START, LOG_FILE_EXTENSION);
     copyFromFileToFile(destinationFile, sourceFileName);
-    
+
     // Build every page into the navbar
     for(int i = 1; i < DATA->numCategories; ++i){
         fprintf(destinationFile, NAVBAR_LINE, DATA->name[i], DATA->name[i]);

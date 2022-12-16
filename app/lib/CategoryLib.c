@@ -30,13 +30,12 @@ void fetchCategories(FILE *logCategories) {
 void printCatList() {
     SEPARATOR;
     if (DATA->numCategories != 0) {
-        printf("Categories:\n\n");
+        printf(CATEGORY_CAT);
         for (int i = 0; i < DATA->numCategories; ++i) {
             printf("%d. %s\n", i + 1, DATA->name[i]);
         }
     } else
-        printf("The category list is empty!\n");
-    SEPARATOR;
+        printf(CATEGORY_EMPTY_CAT);
 }
 
 /* fillCatLog */
@@ -56,10 +55,14 @@ void addCategory() {
     char category[MAX_CATEGORY_NAME];
 
     SEPARATOR;
-    printf("Please enter a category name:\n");
+    printf(CATEGORY_NAME_CAT);
     SEPARATOR;
     if (fgets(category, MAX_CATEGORY_NAME, stdin) != NULL) {
         REMOVENEWL(category);
+        if (strcmp(category, "0") == 0){
+            CLEAR;
+            return;
+        }
         strcpy(DATA->name[DATA->numCategories], category);
     }
     CLEAR;
@@ -69,7 +72,7 @@ void addCategory() {
 
     CLEAR;
     SEPARATOR;
-    printf("Created category %d - %s\n", DATA->numCategories, category);
+    printf(CATEGORY_CREATED_CAT, DATA->numCategories, category);
     buildNavBar(DATA);
 }
 
@@ -86,11 +89,11 @@ void deleteCategory(int choice) {
     }
     // Delete category log, category description and page
     char categoryLogFileName[MAX_FOLDER_LENGTH];
-    sprintf(categoryLogFileName, "%s%s%s", LOG_FOLDER, DATA->name[choice], LOG_FILE_EXTENSION);
+    sprintf(categoryLogFileName, "%s%s%s%s", LOG_FOLDER, DATA->name[choice], DESCRIPTION_TAG, LOG_FILE_EXTENSION); // Deletes the category description log
     DELETE_FILE(categoryLogFileName);
-    sprintf(categoryLogFileName, "%s%s%s%s", LOG_FOLDER, DATA->name[choice], DESCRIPTION_TAG, LOG_FILE_EXTENSION);
+    sprintf(categoryLogFileName, "%s%s%s", LOG_FOLDER, DATA->name[choice], LOG_FILE_EXTENSION); // Deletes the category log
     DELETE_FILE(categoryLogFileName);
-    sprintf(categoryLogFileName, "%s%s%s", PAGE_FOLDER, DATA->name[choice], PAGE_FILE_EXTENSION);
+    sprintf(categoryLogFileName, "%s%s%s", PAGE_FOLDER, DATA->name[choice], PAGE_FILE_EXTENSION); // Deletes the category page
     DELETE_FILE(categoryLogFileName);
 
     for (int i = choice; i < DATA->numCategories; ++i) {
@@ -103,9 +106,9 @@ void deleteCategory(int choice) {
     FILE *logCategories = fopen(logCategoriesFileName, "w");
     fillCatLog(logCategories);
     fclose(logCategories);
-    
+
     SEPARATOR;
-    printf("Category successfully deleted!\n");
+    printf(CATEGORY_DELETED_CAT);
     buildNavBar(DATA);
 }
 
@@ -132,7 +135,7 @@ void createCategoryDescription(char *categoryName) { // Creates formatted catego
     char descriptionLogFileName[MAX_FOLDER_LENGTH];
     char *categoryDescription;
 
-    askForTextInput("Please choose a description for your new category (50 characters limit):\n", &categoryDescription, MAX_CATEGORY_DESCRIPTION);
+    askForTextInput(CATEGORY_DESCRIPTION_CAT, &categoryDescription, MAX_CATEGORY_DESCRIPTION);
     REMOVENEWL(categoryDescription);
 
     // Create log file

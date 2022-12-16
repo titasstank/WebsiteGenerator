@@ -32,7 +32,7 @@
   * Added category description which is created at the time of creating the category itself
   * Overall small improvements but much more deterioration
   * **v0.1** of building page file
-    * Loads all of standart templates and category information into one html file sucessfully
+    * Loads all of standard templates and category information into one html file sucessfully
   * Many other additions and improvements overall...
 * **Version 0.5 Some Date**
 
@@ -45,3 +45,9 @@
 
   * Nav bar gets updated with newer categories
   * Minor changes and bugfixes to smoothen the process a little
+* **Version 0.7.1 22-12-3rd week (a.k.a. "polishing")**
+
+  * Input validation
+  * Less hardcoding
+  * Ability to quit at some stages
+  * Less crashing (probably not)

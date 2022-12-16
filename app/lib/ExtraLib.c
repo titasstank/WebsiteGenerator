@@ -3,6 +3,7 @@
 #include <string.h>
 #include "DefinitionLib.h"
 #include "CategoryLib.h"
+#include "MessageLib.h"
 
 extern Categories *DATA;
 
@@ -17,18 +18,37 @@ void printCredits() {
         }
     } else {
         SEPARATOR;
-        printf("Credits file does not exist or path is wrong!\n");
+        printf(EXTRA_OPENCRED_FAIL);
         SEPARATOR;
     }
     PAUSE;
     CLEAR;
-    SEPARATOR;
     fclose(cr);
 };
 
-void printDebug() { // ?? What is this sh!t
+void printDebugList(){
+    for (int i = 0 ; i < DATA->numCategories ; ++i){
+        printf("%d. %s\n", i + 1, DATA->name[i]);
+        fetchMessages(i);
+        for (int j = 0 ; j < DATA->CatMessages[i].numMessages ; ++j){
+            printf("    %d.%d. %s\n", i + 1, j + 1, DATA->CatMessages[i].Messages[j]);
+        }
+    }
+}
+
+void printDebug(){
     SEPARATOR;
-    printf("Global variables:\n\n");
-    printf("Number of categories: %d\n", DATA->numCategories);
-    printCatList();
+    printf(EXTRA_GLOBAL_VAR);
+    printf(EXTRA_NUMBER_CAT, DATA->numCategories);
+    printDebugList();
+}
+
+int getValidatedInt(){
+    int num;
+    if (scanf("%u", &num) == 1 && getchar() == '\n'){
+        return num;
+    } else {
+        while(getchar() != '\n');
+        return -1;
+    }
 }

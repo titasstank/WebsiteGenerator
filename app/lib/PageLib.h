@@ -5,6 +5,6 @@ void copyFromFileToFile(FILE *destinationFile, char *sourceFileName);
 
 int buildPage(unsigned int workingCategory);
 
-void buildNavBar(Categories *DATA);
+void buildNavBar();
 
 #endif
