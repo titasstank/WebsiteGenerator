@@ -9,4 +9,6 @@ void printDebug();
 
 int getValidatedInt();
 
+unsigned char checkForDuplicates(char *newString, char (*existingStrings)[MAX_TITLE], unsigned size);
+
 #endif

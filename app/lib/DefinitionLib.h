@@ -3,15 +3,14 @@
 
 /* Size definitions */
 
-#define VERSION "0.7"
+#define VERSION "0.7.5"
 #define COPY_BUFFER_SIZE 255
 #define MAX_MESSAGE_LENGTH 5000
-#define MAX_MESSAGE_TITLE 100
+#define MAX_TITLE 50
 #define MAX_MESSAGE_FILES 100
 #define MAX_CATEGORIES 10
 #define MAX_CATEGORY_DESCRIPTION 50
 #define MAX_LOG_DATA 1000
-#define MAX_CATEGORY_NAME 20
 #define MAX_FOLDER_LENGTH 258
 
 /* File locations & extensions */
@@ -82,15 +81,17 @@
 #define CATEGORY_CREATED_CAT     "Created category - %d. %s\n"
 #define CATEGORY_DELETED_CAT     "Category successfully deleted!\n"
 #define CATEGORY_DESCRIPTION_CAT "Please choose a description for your new category (50 characters limit):\n"
+#define CATEGORY_EXISTS          "Category with that name already exists!\n"
 
 //From MessageLib.c
 #define MESSAGE_CANNOTOPEN_LOGS  "Could not open message logs!\n"
 #define MESSAGE_CATNO_MES        "This category has no messages!\n"
 #define MESSAGE_MES              "Messages:\n\n"
 #define MESSAGE_MALOC_FAIL       "Could not allocate memory!\n"
-#define MESSAGE_ENTERTITLE_MES   "Enter the title of your message\n"
+#define MESSAGE_ENTERTITLE_MES   "Enter the title of your message (input 0 to go back):\n"
 #define MESSAGE_ENTER_MES        "Enter the message\n"
 #define MESSAGE_MESDEL_SUC       "Message deleted successfully!\n"
+#define MESSAGE_EXISTS           "Message with that title already exists!\n"
 
 //From PageLib.c
 #define PAGE_BUILDPAGE_FAIL      "Could not open file to copy contents from. Page has not been built successfully!\nDon't forget to exit!\n"

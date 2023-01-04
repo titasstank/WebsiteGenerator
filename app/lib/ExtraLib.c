@@ -52,3 +52,13 @@ int getValidatedInt(){
         return -1;
     }
 }
+
+unsigned char checkForDuplicates(char *newString, char (*existingStrings)[MAX_TITLE], unsigned size){
+    for(int i = 0; i < size; ++i){
+        if(strcmp(newString, existingStrings[i]) == 0){
+            return 1;
+        printf("hello guys\n");
+        }
+    }
+    return 0;
+}

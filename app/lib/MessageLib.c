@@ -4,6 +4,7 @@
 #include "DefinitionLib.h"
 #include "CategoryLib.h"
 #include "TemplateLib.h"
+#include "ExtraLib.h"
 
 extern Categories *DATA;
 
@@ -18,7 +19,7 @@ void fetchMessages(unsigned int numCat) {
     fscanf(messageLog, "%d", &(DATA->CatMessages[numCat].numMessages));
     fgetc(messageLog);
     for (int i = 0; i < DATA->CatMessages[numCat].numMessages; ++i) {
-        fgets(DATA->CatMessages[numCat].Messages[i], MAX_MESSAGE_TITLE + 1, messageLog);
+        fgets(DATA->CatMessages[numCat].Messages[i], MAX_TITLE + 1, messageLog);
         REMOVENEWL(DATA->CatMessages[numCat].Messages[i]);
     }
     fclose(messageLog);
@@ -68,8 +69,21 @@ void createMessage(unsigned int numCat) {
     char *message;
 
     CLEAR;
-    askForTextInput(MESSAGE_ENTERTITLE_MES, &messageTitle, MAX_MESSAGE_TITLE);
-    REMOVENEWL(messageTitle);
+    while(1){
+        askForTextInput(MESSAGE_ENTERTITLE_MES, &messageTitle, MAX_TITLE);
+        REMOVENEWL(messageTitle);
+        if(checkForDuplicates(messageTitle, DATA->CatMessages[numCat].Messages, DATA->CatMessages[numCat].numMessages) == 0){
+            if (strcmp(messageTitle, "0") == 0){
+                CLEAR;
+                free(messageTitle);
+                return;
+            }
+            break;
+        }
+        CLEAR;
+        printf(MESSAGE_EXISTS);
+    }
+
 
     CLEAR;
     askForTextInput(MESSAGE_ENTER_MES, &message, MAX_MESSAGE_LENGTH);

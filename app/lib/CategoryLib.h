@@ -5,12 +5,12 @@
 
 typedef struct Messages {
     int numMessages;
-    char Messages[MAX_MESSAGE_FILES][MAX_MESSAGE_TITLE];
+    char Messages[MAX_MESSAGE_FILES][MAX_TITLE];
 } Messages;
 
 typedef struct Categories {
     int numCategories;
-    char name[MAX_CATEGORIES][MAX_CATEGORY_NAME];
+    char name[MAX_CATEGORIES][MAX_TITLE];
     Messages CatMessages[MAX_CATEGORIES];
 } Categories;
 

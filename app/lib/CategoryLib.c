@@ -5,6 +5,7 @@
 #include "CategoryLib.h"
 #include "MessageLib.h"
 #include "PageLib.h"
+#include "ExtraLib.h"
 
 Categories *DATA;
 
@@ -12,12 +13,12 @@ Categories *DATA;
 /* Copies the number of categories and the categories to the structure from the specified file */
 
 void fetchCategories(FILE *logCategories) {
-    char category[MAX_CATEGORY_NAME];
+    char category[MAX_TITLE];
 
     fscanf(logCategories, "%d", &(DATA->numCategories));
-    if (fgets(category, MAX_CATEGORY_NAME, logCategories) != NULL) {
+    if (fgets(category, MAX_TITLE, logCategories) != NULL) {
         for (int i = 0; i < DATA->numCategories; ++i) {
-            fgets(category, MAX_CATEGORY_NAME, logCategories);
+            fgets(category, MAX_TITLE, logCategories);
             REMOVENEWL(category);
             strcpy(DATA->name[i], category);
         }
@@ -59,29 +60,33 @@ void fillCatLog() {
 /* Adds a category to the structure */
 
 void addCategory() {
-    char category[MAX_CATEGORY_NAME];
+    char *category;
 
-    SEPARATOR;
-    printf(CATEGORY_NAME_CAT);
-    SEPARATOR;
-    if (fgets(category, MAX_CATEGORY_NAME, stdin) != NULL) {
-        REMOVENEWL(category);
-        if (strcmp(category, "0") == 0){
-            CLEAR;
-            return;
-        }
-        strcpy(DATA->name[DATA->numCategories], category);
-    }
     CLEAR;
+    while(1){
+        askForTextInput(CATEGORY_NAME_CAT, &category, MAX_TITLE);
+        REMOVENEWL(category);
+        if(checkForDuplicates(category, DATA->name, DATA->numCategories) == 0){
+            if (strcmp(category, "0") == 0){
+                CLEAR;
+                free(category);
+                return;
+            }
+            break;
+        }
+        CLEAR;
+        printf(CATEGORY_EXISTS);
+    }
+
     createCategoryDescription(DATA->name[DATA->numCategories]);
     formLogFile(DATA->name[DATA->numCategories++]);
-    // DATA->numCategories = (DATA->numCategories) + 1;
     fillCatLog();
 
     CLEAR;
     SEPARATOR;
     printf(CATEGORY_CREATED_CAT, DATA->numCategories, category);
     buildNavBar(DATA);
+    free(category);
 }
 
 /* deleteCategory */
