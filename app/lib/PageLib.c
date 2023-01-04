@@ -20,6 +20,7 @@ void copyFromFileToFile(FILE *destinationFile, char *sourceFileName) {
         fgets(buffer, COPY_BUFFER_SIZE + 1, sourceFile);
         fputs(buffer, destinationFile);
     }
+    fclose(sourceFile);
 }
 
 int buildPage(unsigned int workingCategory) {

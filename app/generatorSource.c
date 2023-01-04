@@ -200,9 +200,7 @@ int main() {
                 break;
             case 5:
                 SEPARATOR;
-                logCategories = fopen(logCategoriesFileName, "w");
-                fillCatLog(logCategories);
-                fclose(logCategories);
+                fillCatLog();
                 break;
             case 6:
                 printCredits();

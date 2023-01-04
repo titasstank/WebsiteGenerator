@@ -41,10 +41,17 @@ void printCatList() {
 /* fillCatLog */
 /* Puts the number of categories and categories form the structure to the specified file */
 
-void fillCatLog(FILE *logCategories) {
-    fprintf(logCategories, "%d\n", DATA->numCategories);
-    for (int i = 0; i < DATA->numCategories; ++i) {
-        fprintf(logCategories, "%s\n", DATA->name[i]);
+void fillCatLog() {
+    FILE *categoryLog;
+    char categoryLogFile[MAX_FOLDER_LENGTH];
+    sprintf(categoryLogFile, "%s%s%s", LOG_FOLDER, CATEGORY_LOG, LOG_FILE_EXTENSION);
+
+    if((categoryLog = fopen(categoryLogFile, "w")) != NULL){
+        fprintf(categoryLog, "%d\n", DATA->numCategories);
+        for (int i = 0; i < DATA->numCategories; ++i) {
+            fprintf(categoryLog, "%s\n", DATA->name[i]);
+        }
+        fclose(categoryLog);
     }
 }
 
@@ -67,8 +74,9 @@ void addCategory() {
     }
     CLEAR;
     createCategoryDescription(DATA->name[DATA->numCategories]);
-    formLogFile(DATA->name[DATA->numCategories]);
-    DATA->numCategories = (DATA->numCategories) + 1;
+    formLogFile(DATA->name[DATA->numCategories++]);
+    // DATA->numCategories = (DATA->numCategories) + 1;
+    fillCatLog();
 
     CLEAR;
     SEPARATOR;
@@ -78,7 +86,7 @@ void addCategory() {
 
 /* deleteCategory */
 /* Deletes a category from the structure */
-
+unsigned failedToDelete = 0;
 void deleteCategory(int choice) {
     fetchMessages(choice);
     // Delete all the files
@@ -87,6 +95,7 @@ void deleteCategory(int choice) {
         sprintf(messageLogFileName, "%s%s_%s%s", LOG_FOLDER, DATA->name[choice], DATA->CatMessages[choice].Messages[i], LOG_FILE_EXTENSION);
         DELETE_FILE(messageLogFileName);
     }
+
     // Delete category log, category description and page
     char categoryLogFileName[MAX_FOLDER_LENGTH];
     sprintf(categoryLogFileName, "%s%s%s%s", LOG_FOLDER, DATA->name[choice], DESCRIPTION_TAG, LOG_FILE_EXTENSION); // Deletes the category description log
@@ -104,7 +113,7 @@ void deleteCategory(int choice) {
     char logCategoriesFileName[MAX_FOLDER_LENGTH];
     sprintf(logCategoriesFileName, "%s%s%s", LOG_FOLDER, CATEGORY_LOG, LOG_FILE_EXTENSION);
     FILE *logCategories = fopen(logCategoriesFileName, "w");
-    fillCatLog(logCategories);
+    fillCatLog();
     fclose(logCategories);
 
     SEPARATOR;

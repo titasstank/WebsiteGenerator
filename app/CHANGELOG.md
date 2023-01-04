@@ -51,3 +51,7 @@
   * Less hardcoding
   * Ability to quit at some stages
   * Less crashing (probably not)
+* **Version 0.7.2 22-12-26**
+
+  * Fixed issue when not being able to delete decription log just after creating it
+  * Fixed oopsie v2

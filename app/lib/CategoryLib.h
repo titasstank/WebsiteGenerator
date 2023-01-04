@@ -20,7 +20,7 @@ void fetchCategories(FILE *logCategories);
 
 void printCatList();
 
-void fillCatLog(FILE *logCategories);
+void fillCatLog();
 
 void addCategory();
 

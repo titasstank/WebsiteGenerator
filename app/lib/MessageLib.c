@@ -84,6 +84,7 @@ void createMessage(unsigned int numCat) {
     CLEAR;
 }
 
+extern unsigned failedToDelete;
 void deleteMessage(unsigned numCat, unsigned messageToDeleteNumber){
     // Deleting the log file
     char messageLogFileName[MAX_FOLDER_LENGTH];

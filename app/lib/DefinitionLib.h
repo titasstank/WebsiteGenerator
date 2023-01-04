@@ -53,7 +53,7 @@
 #define CLEAR                   printf("\e[1;1H\e[2J");
 #define PAUSE                   system("pause");
 #define REMOVENEWL(str)         str[strcspn(str, "\n")] = 0;
-#define DELETE_FILE(fileName)   remove(fileName);
+#define DELETE_FILE(fileName)   if(remove(fileName) != 0) failedToDelete = 1; else failedToDelete = 0;
 #define SEPARATOR               printf("%s","=====================================================\n");
 
 #define LIST_CATEGORY_OPTIONS SEPARATOR; printf("What would you like to do?\n\n1. Create a category\n2. Delete a category\n3. Print list of categories\n4. Select working category\n5. Exit\n\n6. Credits\n7. Debug (Loads all messages!)\n"); SEPARATOR;
