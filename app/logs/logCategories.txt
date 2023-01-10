@@ -1,6 +1,2 @@
-5
+1
 index
-Freshmore
-Sophomore
-Junior
-Senior
