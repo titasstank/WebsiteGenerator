@@ -24,6 +24,8 @@ jobs:
       - name: Compile App
         run: |
           cmake -S app -B build -G "MinGW Makefiles"  
+          cd build
+          make
       - name: Package App
         run: |
           mkdir website-package
@@ -55,6 +57,8 @@ jobs:
         - name: Compile App
           run: |
             cmake -S app -B build
+            cd build
+            make
         - name: Package App
           run: |
             mkdir website-package
@@ -87,17 +91,19 @@ jobs:
       - name: Compile App
         run: |
           cmake -S app -B build
-          cmake --build build  
-          run: |
-            mkdir website-package
-            mv app/build/webgen* website-package/
-            cp -r app/templates website-package/
-            cp -r app/logs website-package/
-            cp -r src website-package/
-            cp package.json website-package/
-            cp package-lock.json website-package/
-            cp README.md website-package/
-            cp LICENCE.md website-package/
+          cd build
+          make
+      - name: Package App
+        run: |
+          mkdir website-package
+          mv app/build/webgen* website-package/
+          cp -r app/templates website-package/
+          cp -r app/logs website-package/
+          cp -r src website-package/
+          cp package.json website-package/
+          cp package-lock.json website-package/
+          cp README.md website-package/
+          cp LICENCE.md website-package/
       # Upload the website-package folder as an artifact
       - name: Upload website-package folder
         uses: actions/upload-artifact@v2
