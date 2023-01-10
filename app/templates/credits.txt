@@ -1,36 +1,33 @@
-|=====================================================================================|
-|                ( \/\/ )( ___)(  _ \/ __)(_  _)(_  _)( ___)                          |
-|                 )    (  )__)  ) _ <\__ \ _)(_   )(   )__)                           |
-|                (__/\__)(____)(____/(___/(____) (__) (____)                          |
-|             ___  ____  _  _  ____  ____    __   ____  _____  ____                   |
-|            / __)( ___)( \( )( ___)(  _ \  /__\ (_  _)(  _  )(  _ \                  |
-|           ( (_-. )__)  )  (  )__)  )   / /(__)\  )(   )(_)(  )   /                  |
-|            \___/(____)(_)\_)(____)(_)\_)(__)(__)(__) (_____)(_)\_)                  |
-|                                                                                     |
-| > Website-Generator Version: 0.7                                                    |
-|                                                                                     |
-| > Made by team - RADAD (2022)                                                       |
-|                                                                                     |
-| > Team members:                                                                     |
-|                                                                                     |
-| > Balys Zalneravicius -                                                             |
-|                                                                                     |
-|                                                                                     |
-| > Markas Dvornikovas - DO NOT USE C FOR WEBSITES, DO NOT                            |
-|                                                                                     |
-| > Nirtautas Sadauskas - C side programming, mainly work with categories, UI,        |
-|   validation and lots of little things like defines, extra functions and credits!   |
-|   At least my spaghetti code is tasty!                                              |
-|                                                                                     |
-| > Titas Stankevicius - HTML (colors :) ), bootstrap cuz we cool,                    |
-|   C side programming, mainly creation and deletion of data.                         |
-|   Prone to OS specific functions but it is what it is                               |
-|                                                                                     |
-| > Thank You for using our program!                                                  |
-|                                                                                     |
-| > Website-Generator is a useful utility to easily create simple and beautiful       |
-|   websites to use for lecturers and students. WebsiteGenerator is licensed under    |
-|   the MIT License, terms of which can be found here:                                |
-|                                                                                     |
-| > https://opensource.org/licenses/MIT                                               |
-|=====================================================================================|
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                     │
+│                ( \/\/ )( ___)(  _ \/ __)(_  _)(_  _)( ___)                          │
+│                 )    (  )__)  ) _ <\__ \ _)(_   )(   )__)                           │
+│                (__/\__)(____)(____/(___/(____) (__) (____)                          │
+│             ___  ____  _  _  ____  ____    __   ____  _____  ____                   │
+│            / __)( ___)( \( )( ___)(  _ \  /__\ (_  _)(  _  )(  _ \                  │
+│           ( (_-. )__)  )  (  )__)  )   / /(__)\  )(   )(_)(  )   /                  │
+│            \___/(____)(_)\_)(____)(_)\_)(__)(__)(__) (_____)(_)\_)                  │
+│                                                                                     │
+│ ● Website-Generator Version: 0.7.6                                                  │
+│                                                                                     │
+│ ● Website-Generator is a useful utility to easily create simple and beautiful       │
+│   websites to use for lecturers and students. WebsiteGenerator is licensed under    │
+│   the MIT License, terms of which can be found here:                                │
+│   https://opensource.org/licenses/MIT                                               │
+│                                                                                     │
+│ ● Made by team - RADAD (2022)                                                       │
+│                                                                                     │
+│ ● Team members:                                                                     │
+│   ◯ Markas D. - DO NOT USE C FOR WEBSITES, DO NOT!!!                                │
+│                                                                                     │
+│   ◯ Nirtautas Sadauskas - C side programming, mainly work with categories, UI,      │
+│   validation and lots of little things like defines, extra functions and credits!   │
+│   At least my spaghetti code is tasty!                                              │
+│                                                                                     │
+│   ◯ Titas Stankevicius - HTML (colors :) ), bootstrap cuz we cool,                  │
+│   C side programming, mainly creation and deletion of data.                         │
+│   Prone to OS specific functions but it is what it is.                              │
+│                                                                                     │
+│                         Thank You for using our program!                            │
+│                                                                                     │
+└─────────────────────────────────────────────────────────────────────────────────────┘

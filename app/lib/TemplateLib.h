@@ -1,6 +1,6 @@
 #ifndef TemplateLib
 #define TemplateLib
 
-void formatBasicMessage(char *, char *, char *);
+void formatMessage(char *, char *, char *);
 
 #endif
