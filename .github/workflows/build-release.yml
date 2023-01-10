@@ -24,7 +24,7 @@ jobs:
       - name: Compile App
         run: |
           cd app
-          cmake -S app -B build -G "MinGW Makefiles"  
+          cmake -S . -B build -G "MinGW Makefiles"  
           cd build
           make
       - name: Package App
@@ -59,7 +59,7 @@ jobs:
         - name: Compile App
           run: |
             cd app
-            cmake -S app -B build
+            cmake -S . -B build
             cd build
             make
         - name: Package App
@@ -95,7 +95,7 @@ jobs:
       - name: Compile App
         run: |
           cd app
-          cmake -S app -B build
+          cmake -S . -B build
           cd build
           make
       - name: Package App
