@@ -1,4 +1,4 @@
-name: Compile app/lib
+name: Compile and Package app
 
 on:
   push:
@@ -23,16 +23,24 @@ jobs:
       # Compile the app using CMake
       - name: Compile App
         run: |
-          cmake -S app -B build -G "MinGW Makefiles"
-          cmake --build build   
-       # Create a release with the compiled files as assets
-      - name: Create Release
-        uses: softprops/action-gh-release@v0.1.15
-        with:
-          body: This release contains the compiled files for the project.
-          tag_name: v0.5
-          files: |
-            build/webgen*
+          cmake -S app -B build -G "MinGW Makefiles"  
+      - name: Package App
+        run: |
+          mkdir website-package
+          mv app/build/webgen* website-package/
+          cp -r app/templates website-package/
+          cp -r app/logs website-package/
+          cp -r src website-package/
+          cp package.json website-package/
+          cp package-lock.json website-package/
+          cp README.md website-package/
+          cp LICENCE.md website-package/
+          # Upload the website-package folder as an artifact
+          - name: Upload website-package folder
+            uses: actions/upload-artifact@v2
+            with:
+              name: website-package-windows
+              path: website-package/
 
   # This job will compile the app for Linux
   linux:
@@ -47,15 +55,23 @@ jobs:
         - name: Compile App
           run: |
             cmake -S app -B build
-            cmake --build build
-        # Create a release with the compiled files as assets
-        - name: Create Release
-          uses: softprops/action-gh-release@v0.1.15
-          with:
-            body: This release contains the compiled files for the project.
-            tag_name: v0.5
-            files: |
-              build/webgen*
+        - name: Package App
+          run: |
+            mkdir website-package
+            mv app/build/webgen* website-package/
+            cp -r app/templates website-package/
+            cp -r app/logs website-package/
+            cp -r src website-package/
+            cp package.json website-package/
+            cp package-lock.json website-package/
+            cp README.md website-package/
+            cp LICENCE.md website-package/
+            # Upload the website-package folder as an artifact
+            - name: Upload website-package folder
+              uses: actions/upload-artifact@v2
+              with:
+                name: website-package-linux
+                path: website-package/
 
   # This job will compile the app for macOS
   macos:
@@ -72,11 +88,19 @@ jobs:
         run: |
           cmake -S app -B build
           cmake --build build  
-      # Create a release with the compiled files as assets
-      - name: Create Release
-        uses: softprops/action-gh-release@v0.1.15
-        with:
-          body: This release contains the compiled files for the project.
-          tag_name: v0.5
-          files: |
-            build/webgen*
+          run: |
+            mkdir website-package
+            mv app/build/webgen* website-package/
+            cp -r app/templates website-package/
+            cp -r app/logs website-package/
+            cp -r src website-package/
+            cp package.json website-package/
+            cp package-lock.json website-package/
+            cp README.md website-package/
+            cp LICENCE.md website-package/
+            # Upload the website-package folder as an artifact
+            - name: Upload website-package folder
+              uses: actions/upload-artifact@v2
+              with:
+                name: website-package-darwin
+                path: website-package/
