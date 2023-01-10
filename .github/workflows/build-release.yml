@@ -54,7 +54,7 @@ jobs:
         - uses: actions/checkout@v3
         # Install the gcc compiler
         - name: Install gcc
-          run: sudo apt-get install gcc=4:9.3.0-1ubuntu2
+          run: sudo apt-get install gcc
         # Compile the app using CMake
         - name: Compile App
           run: |
@@ -90,7 +90,7 @@ jobs:
       # Install the gcc compiler
       - name: Install gcc
         run: |
-          brew install gcc@9
+          brew install gcc
       # Compile the app using CMake
       - name: Compile App
         run: |
