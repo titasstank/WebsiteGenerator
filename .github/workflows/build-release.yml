@@ -24,7 +24,7 @@ jobs:
       - name: Compile App
         run: |
           cd app
-          cmake -S . -B build -G "MinGW Makefiles"  
+          CC=gcc-9.4.0 CXX=g++-9.4.0 cmake -S . -B build -G "MinGW Makefiles"  
           cd build
           make
       - name: Package App
@@ -54,12 +54,12 @@ jobs:
         - uses: actions/checkout@v3
         # Install the gcc compiler
         - name: Install gcc
-          run: sudo apt-get install gcc
+          run: sudo apt-get install gcc-9.4.0
         # Compile the app using CMake
         - name: Compile App
           run: |
             cd app
-            cmake -S . -B build
+            CC=gcc-9.4.0 CXX=g++-9.4.0 cmake -S . -B build
             cd build
             make
         - name: Package App
@@ -90,12 +90,12 @@ jobs:
       # Install the gcc compiler
       - name: Install gcc
         run: |
-          brew install gcc
+          brew install gcc@9.4.0
       # Compile the app using CMake
       - name: Compile App
         run: |
           cd app
-          cmake -S . -B build
+          CC=gcc-9.4.0 CXX=g++-9.4.0 cmake -S . -B build
           cd build
           make
       - name: Package App
