@@ -35,12 +35,12 @@ jobs:
           cp package-lock.json website-package/
           cp README.md website-package/
           cp LICENCE.md website-package/
-          # Upload the website-package folder as an artifact
-          - name: Upload website-package folder
-            uses: actions/upload-artifact@v2
-            with:
-              name: website-package-windows
-              path: website-package/
+      # Upload the website-package folder as an artifact
+      - name: Upload website-package folder
+        uses: actions/upload-artifact@v2
+        with:
+          name: website-package-windows
+          path: website-package/
 
   # This job will compile the app for Linux
   linux:
@@ -66,12 +66,12 @@ jobs:
             cp package-lock.json website-package/
             cp README.md website-package/
             cp LICENCE.md website-package/
-            # Upload the website-package folder as an artifact
-            - name: Upload website-package folder
-              uses: actions/upload-artifact@v2
-              with:
-                name: website-package-linux
-                path: website-package/
+        # Upload the website-package folder as an artifact
+        - name: Upload website-package folder
+          uses: actions/upload-artifact@v2
+          with:
+            name: website-package-linux
+            path: website-package/
 
   # This job will compile the app for macOS
   macos:
@@ -98,9 +98,9 @@ jobs:
             cp package-lock.json website-package/
             cp README.md website-package/
             cp LICENCE.md website-package/
-            # Upload the website-package folder as an artifact
-            - name: Upload website-package folder
-              uses: actions/upload-artifact@v2
-              with:
-                name: website-package-darwin
-                path: website-package/
+      # Upload the website-package folder as an artifact
+      - name: Upload website-package folder
+        uses: actions/upload-artifact@v2
+        with:
+          name: website-package-darwin
+          path: website-package/
