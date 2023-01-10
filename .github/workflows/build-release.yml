@@ -29,7 +29,8 @@ jobs:
       - name: Package App
         run: |
           mkdir website-package
-          mv app/build/webgen* website-package/
+          mv app/build/webgenapp.exe website-package/
+          mv app/build/webgenapp website-package/
           cp -r app/templates website-package/
           cp -r app/logs website-package/
           cp -r src website-package/
@@ -62,7 +63,8 @@ jobs:
         - name: Package App
           run: |
             mkdir website-package
-            mv app/build/webgen* website-package/
+            mv app/build/webgenapp website-package/
+            mv app/build/libwebgenlib.a website-package/
             cp -r app/templates website-package/
             cp -r app/logs website-package/
             cp -r src website-package/
@@ -96,7 +98,8 @@ jobs:
       - name: Package App
         run: |
           mkdir website-package
-          mv app/build/webgen* website-package/
+          mv app/build/webgenapp website-package/
+          mv app/build/libwebgenlib.a website-package/
           cp -r app/templates website-package/
           cp -r app/logs website-package/
           cp -r src website-package/
