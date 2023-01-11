@@ -1,20 +1,22 @@
 #ifndef CategoryLib
 #define CategoryLib
 
-/* Struct Definition */
+// Struct Definition
 
-typedef struct Messages {
+typedef struct Messages
+{
     int numMessages;
     char Messages[MAX_MESSAGE_FILES][MAX_TITLE];
 } Messages;
 
-typedef struct Categories {
+typedef struct Categories
+{
     int numCategories;
     char name[MAX_CATEGORIES][MAX_TITLE];
     Messages CatMessages[MAX_CATEGORIES];
 } Categories;
 
-/* Function Definitions */
+// Function Definitions
 
 void fetchCategories(FILE *logCategories);
 

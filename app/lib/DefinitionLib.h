@@ -80,8 +80,8 @@
     SEPARATOR;                                                                                                                                \
     printf("What would you like to do?\n1. Create a message\n2. Delete a message\n3. Print a list of messages\n4. Build page and go back\n"); \
     SEPARATOR;
-#define LIST_MESSAGE_TYPES                                                                                            \
-    SEPARATOR;                                                                                                        \
+#define LIST_MESSAGE_TYPES                                                                                                              \
+    SEPARATOR;                                                                                                                          \
     printf("What would you like to do?\n1. Insert text\n2. Insert image\n3. Insert link\n4. Insert YouTube video\n0. Exit the loop\n"); \
     SEPARATOR;
 

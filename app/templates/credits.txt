@@ -18,13 +18,13 @@
 │ ● Made by team - RADAD (2022)                                                       │
 │                                                                                     │
 │ ● Team members:                                                                     │
-│   ◯ Markas D. - DO NOT USE C FOR WEBSITES, DO NOT!!!                                │
+│   ○ Markas D. - DO NOT USE C FOR WEBSITES, DO NOT!!!                                │
 │                                                                                     │
-│   ◯ Nirtautas Sadauskas - C side programming, mainly work with categories, UI,      │
+│   ○ Nirtautas Sadauskas - C side programming, mainly work with categories, UI,      │
 │   validation and lots of little things like defines, extra functions and credits!   │
 │   At least my spaghetti code is tasty!                                              │
 │                                                                                     │
-│   ◯ Titas Stankevicius - HTML (colors :) ), bootstrap cuz we cool,                  │
+│   ○ Titas Stankevicius - HTML (colors :) ), bootstrap cuz we cool,                  │
 │   C side programming, mainly creation and deletion of data.                         │
 │   Prone to OS specific functions but it is what it is.                              │
 │                                                                                     │

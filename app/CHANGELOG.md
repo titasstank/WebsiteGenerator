@@ -69,3 +69,7 @@
 
   * Now a duplicate category or message cannot be created
   * Also you can quit from creating a message title
+
+* **Version 0.7.6 23-01-12**
+
+  * Many types of messages now available

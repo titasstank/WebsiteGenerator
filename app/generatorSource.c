@@ -12,7 +12,7 @@ extern Categories *DATA;
 int main()
 {
     DATA = malloc(sizeof(Categories));
-    /* Work with files */
+    // Work with files 
 
     FILE *logCategories;
     char logCategoriesFileName[MAX_FOLDER_LENGTH];
@@ -26,7 +26,7 @@ int main()
     else
         fclose(logCategories);
 
-    /* Work with categories */
+    // Work with categories 
 
     int menuCat = 0, workCat = 0, menuMes = 0, choice;
 
@@ -39,7 +39,7 @@ int main()
     fetchCategories(logCategories);
     fclose(logCategories);
 
-    /* Create an Index page if there isn't one already */
+    // Create an Index page if there isn't one already 
 
     FILE *homePage;
     char homePageFileName[MAX_FOLDER_LENGTH];
@@ -246,7 +246,7 @@ int main()
         }
     }
 
-    /* End of program */
+    // End of program 
 
     printf(SOURCE_CLOSE_MES);
     SEPARATOR;

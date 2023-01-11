@@ -17,12 +17,12 @@ void messageImage(char **message, char *link, char *altText);
 
 void messageLink(char **message, char *link, char *linkText);
 
+void parseYoutubeUrl(const char *url, char *video_id);
+
 void messageVideo(char **message, char *videoID, char *title);
 
 void createMessage(unsigned int numCat);
 
 void deleteMessage(unsigned numCat, unsigned messageToDeleteNumber);
-
-void parseYoutubeUrl(const char *url, char *video_id);
 
 #endif // MessageLib
