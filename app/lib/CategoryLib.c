@@ -91,6 +91,7 @@ void addCategory()
         CLEAR;
         printf(CATEGORY_EXISTS);
     }
+    strcpy(DATA->name[DATA->numCategories], category);
 
     createCategoryDescription(DATA->name[DATA->numCategories]);
     formLogFile(DATA->name[DATA->numCategories++]);

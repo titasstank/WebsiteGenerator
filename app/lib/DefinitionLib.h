@@ -70,7 +70,7 @@
         failedToDelete = 1;    \
     else                       \
         failedToDelete = 0;
-#define SEPARATOR printf("%s", "────────────────────────────────────────────────────────────────────────────────\n");
+#define SEPARATOR printf("%s", "-------------------------------------------------------------------------\n");
 
 #define LIST_CATEGORY_OPTIONS                                                                                                                                                                         \
     SEPARATOR;                                                                                                                                                                                        \
