@@ -62,6 +62,20 @@ $ cd build
 $ make
 ```
 
+### Theming
+
+The websites theme can be changes by changing according variables located at `./src/assets/scss/abstracts/_variables.scss`.
+
+```scss
+$primary: #78003f;
+$secondary: #e64164;
+$light: #f1f1f1;
+$dark: #414141;
+$white: #ffffff;
+```
+
+_After changing the theme you may need to delete files in `./dist/`, since remenants can be left behind._
+
 ### Serving the app
 
 ```sh
@@ -75,7 +89,7 @@ $ npm run dev build
 ```
 
 This task will create a distribution version of the project
-inside your local `dist/` folder
+inside your local `./dist/` folder
 
 ### Clean up packages
 
